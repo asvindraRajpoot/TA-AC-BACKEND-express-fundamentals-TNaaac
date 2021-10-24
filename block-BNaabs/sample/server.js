@@ -8,6 +8,7 @@ var app=express()
 // - add a route with params to grab request made on `/users/1234` or `/users/asdf`
 
 app.use(express.json())
+app.use(express.urlencoded({extended:false}))
 
 app.get('/',(req,res)=>{
     res.sendFile(__dirname+'/index.html');
@@ -21,7 +22,7 @@ app.get('/new',(req,res)=>{
 })
 app.post('/new',(req,res)=>{
   
-
+    console.log(req.body);
     res.send(req.body);
 
 })

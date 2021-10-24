@@ -10,6 +10,10 @@ app.use(express.urlencoded({extended:false}));
 app.use(logger('dev'));
 app.use(cookieParser());
 
+app.use((req,res,next)=>{
+    res.cookie('username','asvindra');
+    next();
+})
 
 app.use('/admin',(req,res,next)=>{
     next('Unauthorized user');
@@ -30,11 +34,11 @@ app.get('/users/:username',(req,res)=>{
 })
 
 app.post('/form',(req,res)=>{
-    res.send(req.body);
+    res.json(req.body);
 
 })
 app.post('/json',(req,res)=>{
-    res.send(req.body);
+    res.json(req.body);
 })
 
 app.use((req,res,next)=>{
